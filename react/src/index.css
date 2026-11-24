@@ -1,0 +1,1143 @@
+@import "tailwindcss";
+
+/*
+ * سمة DataTables الأساسية تُستورَد هنا لا من مكوّن الجدول: المكوّن
+ * مؤجَّل، وورقةٌ تصل بعد أوراق المنصة تغلب عليها بترتيب الورقة —
+ * فتعود ألوان المكتبة الثابتة فوق رموز الهوية. وباستيرادها أوّلاً
+ * تبقى تعريفاتنا هي الأخيرة.
+ */
+@import "datatables.net-dt/css/dataTables.dataTables.css" layer(base);
+@import "datatables.net-responsive-dt/css/responsive.dataTables.css" layer(base);
+
+/*
+ * هوية المستورد البصرية:
+ *   #142D4E كحلي — العناوين والأسطح الداكنة
+ *   #16A6A1 فيروزي — الروابط والتمييز
+ *   #087F7B أخضر عميق — أزرار الإجراء الأساسية
+ *   #F5F7FA رمادي فاتح — سطح الصفحة في الوضع النهاري
+ */
+@theme {
+  --font-sans: "IBM Plex Sans Arabic", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #e6f6f5;
+  --color-brand-100: #c7ecea;
+  --color-brand-200: #96dcd9;
+  --color-brand-300: #5fc9c5;
+  --color-brand-400: #2fb5b1;
+  --color-brand-500: #16a6a1;
+  --color-brand-600: #0e908c;
+  --color-brand-700: #087f7b;
+  --color-brand-800: #066663;
+  --color-brand-900: #044c4a;
+
+  --color-navy-500: #24528c;
+  --color-navy-600: #1c3c66;
+  --color-navy-700: #142d4e;
+  --color-navy-800: #102440;
+  --color-navy-900: #0b1a2e;
+}
+
+/* الوضع النهاري هو الأساس */
+:root {
+  --surface: #f5f7fa;
+  --surface-raised: #ffffff;
+  --card: #ffffff;
+  --border: #dde3ec;
+  --text: #142d4e;
+  --muted: #5b708d;
+  --accent: #066663;
+  --accent-soft: #e6f6f5;
+  --success: #047857;
+  --success-soft: #ecfdf5;
+  --warning: #b45309;
+  --warning-soft: #fffbeb;
+  --danger: #b91c1c;
+  --danger-soft: #fef2f2;
+  --danger-solid: #b91c1c;
+  --star: #d97706;
+  /* أربعة ألوان تكفي أقساماً أربعة في رسمٍ واحد، وتبقى متمايزة مطبوعة
+     بالرمادي: كحليّ غامق، فيروزيّ، عنبريّ، ورماديّ فاتح. */
+  --chart-1: #1c3c66;
+  --chart-2: #087f7b;
+  --chart-3: #b45309;
+  --chart-4: #64748b;
+  --header: #ffffff;
+  --shadow: 0 1px 2px rgb(20 45 78 / 0.06), 0 8px 24px -12px rgb(20 45 78 / 0.12);
+}
+
+/* الوضع الليلي: كحلي الهوية أساساً، والفيروزي يبقى ظاهراً عليه */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: #0b1a2e;
+    --surface-raised: #142d4e;
+    --card: #102440;
+    --border: #1f3b5e;
+    --text: #e8eef5;
+    --muted: #92a6c0;
+    --accent: #2fb5b1;
+    --accent-soft: rgb(47 181 177 / 0.12);
+    --success: #34d399;
+    --success-soft: rgb(52 211 153 / 0.12);
+    --warning: #fbbf24;
+    --warning-soft: rgb(251 191 36 / 0.12);
+    --danger: #fca5a5;
+    --danger-soft: rgb(252 165 165 / 0.12);
+    --danger-solid: #dc2626;
+    --star: #fbbf24;
+    --chart-1: #7fb0e8;
+    --chart-2: #2fb5b1;
+    --chart-3: #f0b429;
+    --chart-4: #94a3b8;
+    --header: #0d2038;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+  }
+}
+
+:root[data-theme="dark"] {
+  --surface: #0b1a2e;
+  --surface-raised: #142d4e;
+  --card: #102440;
+  --border: #1f3b5e;
+  --text: #e8eef5;
+  --muted: #92a6c0;
+  --accent: #2fb5b1;
+  --accent-soft: rgb(47 181 177 / 0.12);
+  --success: #34d399;
+  --success-soft: rgb(52 211 153 / 0.12);
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.12);
+  --danger: #fca5a5;
+  --danger-soft: rgb(252 165 165 / 0.12);
+  --danger-solid: #dc2626;
+  --star: #fbbf24;
+  --chart-1: #7fb0e8;
+  --chart-2: #2fb5b1;
+  --chart-3: #f0b429;
+  --chart-4: #94a3b8;
+  --header: #0d2038;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.5);
+}
+
+html {
+  font-family: var(--font-sans);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] { color-scheme: dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { color-scheme: dark; }
+}
+
+body {
+  background: var(--surface);
+  color: var(--text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* الأرقام تبقى لاتينية في الاتجاهين لسهولة قراءة المبالغ */
+.tabular { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+
+.muted { color: var(--muted); }
+
+.divide-rtl > * + * { border-top: 1px solid var(--border); }
+
+/* صورة غائبة: سطح محايد بعلامة الهوية بدل فراغ أبيض */
+.thumb-fallback {
+  background:
+    linear-gradient(135deg, var(--accent-soft) 0%, transparent 60%),
+    var(--surface);
+  color: var(--muted);
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/*
+ * ألوان دلالية جاهزة. الفيروزي #16A6A1 جميل لكنه يسقط إلى 3:1 كنصّ
+ * على أبيض، فالنهاري يأخذ درجة أعمق والليلي درجة أفتح — واللون يبقى
+ * من عائلة الهوية في الحالتين.
+ *
+ * والمعيار ليس السطح العادي وحده: هذه الألوان تُكتب أيضاً فوق تلوينها
+ * الخفيف (--*-soft) في الشارات والتنبيهات، وهو أقرب إليها من السطح،
+ * فكل درجة هنا مقيسة على أسوأ الحالتين لا على الأبيض فقط.
+ *
+ * --danger-solid منفصل عن --danger: الأول خلفية زرّ بنصّ أبيض فوقه،
+ * والثاني نصّ ملوّن على سطح. الليلي يحتاجهما متعاكسين — فاتح للنصّ
+ * وغامق للخلفية — فلا يصلح رمز واحد للاثنين.
+ */
+.text-accent  { color: var(--accent); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-danger  { color: var(--danger); }
+.text-star    { color: var(--star); }
+
+/*
+ * لوحة الهيرو: صورة الميناء ملء العرض وفوقها حجاب داكن متدرّج.
+ *
+ * الصورة واحدة في الوضعين عمداً — نصّها أبيض على كحلي دائماً، فلا
+ * يتبدّل تباينه بتبدّل السمة ولا يحتاج قياساً مرّتين. ولوضع صورة
+ * فوتوغرافية مكان الرسم يكفي تبديل --hero-image وحده.
+ */
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-navy-900);
+}
+
+/* يلغي حشوة الحاوية فقط، فيبلغ القسم حافة الشاشة وباقي الصفحة تبقى داخل الهامش. */
+.bleed-x {
+  width: calc(100% + 2 * var(--page-gutter, 0px));
+  max-width: none;
+  margin-inline: calc(var(--page-gutter, 0px) * -1);
+}
+
+.page-frame {
+  --page-gutter: clamp(1.5rem, 5vw, 6.5rem);
+  padding-inline: var(--page-gutter);
+}
+
+.app-main {
+  --page-gutter: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .app-main {
+    --page-gutter: 1.5rem;
+  }
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image: var(--hero-image, url("/brand/hero.svg"));
+  background-size: cover;
+  background-position: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgb(8 22 40 / 0.92) 0%,
+    rgb(8 22 40 / 0.6) 45%,
+    rgb(8 22 40 / 0.38) 100%
+  );
+}
+
+.hero-title { color: #ffffff; }
+.hero-sub { color: rgb(255 255 255 / 0.88); }
+
+.hero::before {
+  animation: hero-drift 22s ease-out both;
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+
+/* دخول النص: يظهر من الأسفل بهدوء، متتابعاً لا دفعة واحدة */
+.rise {
+  animation: rise 0.7s ease both;
+}
+
+.rise-2 { animation-delay: 0.14s; }
+.rise-3 { animation-delay: 0.28s; }
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* شريط الأصناف يمرّ ببطء، ويتوقّف حين يمرّ المؤشّر فوقه */
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker var(--ticker-duration, 42s) linear infinite;
+}
+
+.ticker-group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding-block: 0.7rem;
+  padding-inline-end: 2.5rem;
+  white-space: nowrap;
+}
+
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track {
+  animation-play-state: paused;
+}
+
+[dir='rtl'] .ticker-track {
+  animation-name: ticker-rtl;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(var(--ticker-shift, 50%) * -1)); }
+}
+
+@keyframes ticker-rtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(var(--ticker-shift, 50%)); }
+}
+
+.banner-shade {
+  background: linear-gradient(to left, rgb(8 22 40 / 0.92) 0%, rgb(8 22 40 / 0.62) 46%, rgb(8 22 40 / 0.12) 100%);
+}
+
+[dir='ltr'] .banner-shade {
+  background: linear-gradient(to right, rgb(8 22 40 / 0.92) 0%, rgb(8 22 40 / 0.62) 46%, rgb(8 22 40 / 0.12) 100%);
+}
+
+.banner-progress {
+  height: 100%;
+  width: 0;
+  background: #fff;
+  animation: banner-progress 6.5s linear;
+}
+
+@keyframes banner-progress {
+  to { width: 100%; }
+}
+
+/* زرّ محدَّد فوق خلفية داكنة: حدّ النظام ولونه لا يُقرآن هناك */
+.btn-on-dark {
+  border-color: rgb(255 255 255 / 0.45);
+  color: #ffffff;
+}
+
+.btn-on-dark:hover {
+  background: rgb(255 255 255 / 0.14);
+  border-color: rgb(255 255 255 / 0.7);
+}
+
+/*
+ * روابط شريط التنقّل. صفّ واحد مشترك بين الروابط المباشرة وأزرار
+ * القوائم المنسدلة كي يتطابق ارتفاعهما وحالتُهما النشطة.
+ */
+/* هيكل التحميل: لمعان يمشي على المساحة المحجوزة */
+.skeleton {
+  border-radius: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    var(--surface) 25%,
+    var(--surface-raised) 50%,
+    var(--surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes skeleton-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+/* نقاط التحميل ترتفع واحدةً واحدة بجانب النص */
+.loading-dots {
+  display: inline-flex;
+  gap: 0.15rem;
+  margin-inline-start: 0.2rem;
+}
+
+.loading-dots span {
+  animation: loading-dot 1.2s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(2) { animation-delay: 0.15s; }
+.loading-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes loading-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-0.2rem);
+  }
+}
+
+/*
+ * شاشة الافتتاح: العلامة تدخل، وحلقة الشعار تُرسم حولها، ثم يُكشف
+ * التطبيق. تبقى فوق الصفحة حتى تُعرف الجلسة فلا تومض واجهة الزائر.
+ */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+}
+
+/* الخلفية تتلاشى وحدها حتى يُرى تكبير العلامة فوق الصفحة */
+.boot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 42%, rgb(22 166 161 / 0.16), transparent 26rem),
+    var(--surface);
+  transition: opacity 0.55s ease;
+}
+
+.boot-leave {
+  pointer-events: none;
+}
+
+.boot-leave::before {
+  opacity: 0;
+}
+
+.boot-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.boot-leave .boot-orbit {
+  animation: boot-exit 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.boot-leave .boot-tag {
+  animation: boot-tag-out 0.32s ease forwards;
+}
+
+.boot-orbit {
+  position: relative;
+  display: grid;
+  width: 12rem;
+  height: 12rem;
+  place-items: center;
+}
+
+.boot-orbit::before {
+  content: "";
+  position: absolute;
+  width: 62%;
+  height: 62%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgb(22 166 161 / 0.32), transparent 70%);
+  animation: boot-glow 1.8s ease-in-out 0.35s infinite;
+}
+
+.boot-arc {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(-90deg);
+}
+
+.boot-track,
+.boot-draw {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.boot-track {
+  stroke: color-mix(in srgb, var(--accent) 28%, var(--border));
+  stroke-width: 1.25;
+}
+
+.boot-draw {
+  stroke: var(--accent);
+  stroke-width: 2.4;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: boot-draw 1.15s cubic-bezier(0.65, 0, 0.35, 1) 0.08s forwards;
+}
+
+.boot-logo {
+  position: relative;
+  z-index: 1;
+  width: 6rem;
+  height: 6rem;
+  object-fit: contain;
+  animation: boot-logo 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.boot-tag {
+  margin-top: 1.15rem;
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 600;
+  animation: boot-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.28s both;
+}
+
+@keyframes boot-logo {
+  0% { opacity: 0; transform: scale(0.72); }
+  70% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes boot-exit {
+  0% { opacity: 1; transform: scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.7); filter: blur(1.5px); }
+}
+
+@keyframes boot-tag-out {
+  to { opacity: 0; transform: translateY(0.35rem); }
+}
+
+@keyframes boot-rise {
+  from { opacity: 0; transform: translateY(0.55rem); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes boot-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes boot-glow {
+  0%,
+  100% { opacity: 0.45; transform: scale(0.92); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* من طلب تقليل الحركة يرى سطحاً ساكناً لا نبضاً */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .hero::before,
+  .rise,
+  .ticker-track,
+  .banner-progress,
+  .loading-dots span,
+  .boot-orbit::before,
+  .boot-draw,
+  .boot-logo,
+  .boot-tag {
+    animation: none;
+  }
+
+  .rise,
+  .boot-logo,
+  .boot-tag { opacity: 1; transform: none; }
+  .banner-progress { width: 100%; }
+  .boot-draw { stroke-dashoffset: 0; }
+  .boot-leave .boot-orbit,
+  .boot-leave .boot-tag { animation: none; }
+  .boot::before,
+  .boot-leave::before { transition: none; }
+}
+
+/*
+ * طيُّ الجدول على الهاتف صار من شأن DataTables: إضافة Responsive تُخفي
+ * الأعمدة الأقلّ أولوية وتعرضها تحت الصفّ عند فتحه. وقواعد
+ * ‎.table-cards‎ التي كانت تبني البطاقات بـ‎data-label‎ حُذفت معها، فلا
+ * نظامان للشيء الواحد.
+ */
+
+/*
+ * حلقة التركيز.
+ *
+ * من يتنقّل بلوحة المفاتيح كان يتنقّل أعمى: لا قاعدة focus-visible في
+ * الورقة كلّها، والعنصر المركَّز يعود بـoutline: none. والحلقة هنا
+ * بلون العلامة وبفجوة تفصلها عن الحدّ، و:focus-visible لا :focus كي لا
+ * تظهر لمن ينقر بالفأرة.
+ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/*
+ * الحقول مستثناة من حلقة التركيز: لها إعلانها الخاصّ — إطارٌ ملوّن
+ * وحلقة حوله — وoutline فوقه خطٌّ ثالث يزدحم بالحدّ ويقبح الزوايا.
+ */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.iti input:focus-visible,
+.rdp-day_button:focus-visible {
+  outline: none;
+}
+
+/* داخل الأسطح الداكنة — رأس العمود وشريطه — تُقلب إلى الأبيض لتُرى */
+.hero :focus-visible,
+[data-on-dark] :focus-visible {
+  outline-color: #ffffff;
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  white-space: nowrap;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: var(--muted);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-link:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.nav-link-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ===========================================================================
+   DataTables
+   ---------------------------------------------------------------------------
+   المكتبة تأتي بسمتها الفاتحة الثابتة، والمنصة لها رموزها ووضعها الليليّ
+   واتجاهها. فما يلي يعيد ربط الجدول بتلك الرموز: الألوان من var لا من
+   قيمٍ مكتوبة، والحواشي منطقية فتنقلب مع اللغة، وزرّ الصفحة يأخذ هيئة
+   أزرار المنصة لا هيئة الجدول.
+   =========================================================================== */
+
+.dt-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 0.85rem 1rem 0.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* التمرير داخل الجدول: الأعمدة لا تُطوى، وما زاد عن العرض يُسحب من هنا */
+.dt-card .dt-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.dt-card .dt-layout-table {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* شريط الأدوات: الطول والبحث فوق، والمعلومات والتصفّح تحت */
+.dt-card .dt-layout-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.6rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+/*
+ * المكتبة تدفع خلية البداية بهامش يميني ثابت، فيقع عدّاد السجلات
+ * في منتصف الشريط بالعربية. البداية تبقى عند طرف القراءة.
+ */
+.dt-card .dt-layout-cell.dt-layout-start,
+.dt-card .dt-layout-cell.dt-layout-end {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.dt-card .dt-layout-cell.dt-layout-end {
+  margin-inline-start: auto;
+}
+
+.dt-card .dt-layout-row:last-child {
+  margin: 0.4rem 0 0;
+}
+
+.dt-card .dt-layout-cell:empty { display: none; }
+
+/* أزرار التصدير: في آخر الشريط العلويّ، بعيداً عن حقل البحث */
+.dt-card .dt-export {
+  display: flex;
+  gap: 0.35rem;
+  margin-inline-start: auto;
+}
+
+.dt-card .dt-export .dt-btn {
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  min-height: 2rem;
+  padding: 0 0.7rem;
+}
+
+.dt-card .dt-export .dt-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.dt-card .dt-export .dt-btn:disabled { opacity: 0.55; cursor: progress; }
+
+.dt-card .dt-length,
+.dt-card .dt-search {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* الحقول: هيئة حقول المنصة — لا outline، وحلقة عند التركيز */
+.dt-card input,
+.dt-card select,
+.dt-filter-input {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.6rem;
+  min-height: 2rem;
+  width: 100%;
+  outline: none;
+}
+
+.dt-card input:focus-visible,
+.dt-card select:focus-visible,
+.dt-filter-input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.dt-card .dt-search input { min-width: 13rem; }
+.dt-card .dt-length select { width: auto; min-width: 4.5rem; }
+
+/* الجدول */
+.dt-table {
+  border-collapse: collapse;
+  /* المكتبة تكتب عرضاً على العنصر؛ بدونه ينكمش الجدول ولا يظهر التمرير */
+  width: max-content !important;
+  min-width: 100% !important;
+}
+
+.dt-table thead th {
+  text-align: start;
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--muted);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.dt-table tbody td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.dt-table tbody tr:last-child td { border-bottom: 0; }
+.dt-table tbody tr:hover td { background: var(--surface); }
+
+/* صفّ التصفية تحت الترويسة */
+.dt-table thead tr.dt-filters th {
+  padding: 0 0.5rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.dt-table thead tr.dt-filters th:empty { padding-bottom: 0.6rem; }
+
+.dt-table thead tr.dt-filters .dt-filter-dates {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.dt-date-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.6rem;
+  min-height: 2rem;
+  width: auto;
+  min-width: 7.5rem;
+  outline: none;
+}
+
+.dt-date-trigger:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* التقويم فوق النوافذ (z-70) وفوق قوائم الاختيار */
+.date-popover {
+  position: fixed;
+  z-index: 80;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  color: var(--text);
+  padding: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.date-popover .rdp-root {
+  --rdp-accent-color: var(--accent);
+  --rdp-accent-background-color: var(--accent-soft);
+  --rdp-today-color: var(--accent);
+  color: var(--text);
+}
+
+/*
+ * أسهم الفرز تسير مع العنوان في السطر نفسه. المكتبة تخرجها من التدفق
+ * وتثبّتها أعلى الخلية، فتظهر في العربية فوق الكلمة لا بجانبها.
+ */
+.dt-table thead th span.dt-column-title {
+  display: inline;
+  vertical-align: middle;
+}
+
+.dt-table thead th span.dt-column-order {
+  display: none;
+}
+
+.dt-table thead th.dt-orderable-asc span.dt-column-order,
+.dt-table thead th.dt-orderable-desc span.dt-column-order,
+.dt-table thead th.dt-ordering-asc span.dt-column-order,
+.dt-table thead th.dt-ordering-desc span.dt-column-order {
+  display: inline-flex !important;
+  flex-direction: column;
+  justify-content: center;
+  position: static !important;
+  inset: auto !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: auto !important;
+  height: auto !important;
+  margin-inline-start: 0.35rem;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+.dt-table thead th span.dt-column-order::before,
+.dt-table thead th span.dt-column-order::after {
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+  display: block;
+  line-height: 0.5rem;
+  font-size: 0.55rem;
+}
+
+.dt-table thead th.dt-orderable-asc,
+.dt-table thead th.dt-orderable-desc { cursor: pointer; }
+
+.dt-table thead th.dt-orderable-asc:hover,
+.dt-table thead th.dt-orderable-desc:hover { color: var(--text); }
+
+.dt-table thead th.dt-ordering-asc,
+.dt-table thead th.dt-ordering-desc { color: var(--accent); }
+
+.dt-table thead th span.dt-column-order::before,
+.dt-table thead th span.dt-column-order::after { opacity: 0.35; }
+
+.dt-table thead th.dt-ordering-asc span.dt-column-order::before,
+.dt-table thead th.dt-ordering-desc span.dt-column-order::after { opacity: 1; }
+
+/* التصفّح */
+.dt-card .dt-paging { display: flex; gap: 0.25rem; flex-wrap: wrap; }
+
+.dt-card .dt-paging button.dt-paging-button {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  min-height: 2rem;
+  min-width: 2rem;
+  padding: 0 0.6rem;
+  cursor: pointer;
+}
+
+.dt-card .dt-paging button.dt-paging-button:hover:not(.disabled):not(.current) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.dt-card .dt-paging button.dt-paging-button.current {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.dt-card .dt-paging button.dt-paging-button.disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.dt-card .dt-info {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.dt-card .dt-empty { color: var(--muted); text-align: center; padding: 2rem 0; }
+
+/* مؤشّر الانتظار */
+.dt-card div.dt-processing {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* الطيّ على الهاتف — بديل بطاقات الجدول القديمة */
+/* صورة المنتج لا تحمل مؤشّر الطي حتى لو وقع الصنف على خليّتها */
+.dt-table td.dt-thumb.dtr-control::before { content: none; display: none; }
+
+.dt-table td.dtr-control::before {
+  content: '+';
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  color: #fff;
+  display: inline-grid;
+  place-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  height: 1.15rem;
+  width: 1.15rem;
+}
+
+.dt-table tr.dtr-expanded td.dtr-control::before {
+  content: '\2212';
+  background: var(--muted);
+}
+
+.dt-table ul.dtr-details {
+  display: grid;
+  gap: 0.3rem;
+  margin: 0;
+  padding: 0.4rem 0 0;
+  width: 100%;
+}
+
+.dt-table ul.dtr-details > li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3rem;
+  list-style: none;
+}
+
+.dt-table ul.dtr-details > li:last-child { border-bottom: 0; }
+.dt-table ul.dtr-details span.dtr-title { color: var(--muted); font-weight: 500; }
+
+/* ما يُكتب داخل الخلايا من HTML */
+.dt-table .dt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 0.12rem 0.55rem;
+  white-space: nowrap;
+}
+
+.dt-table .dt-chip-neutral { background: var(--surface); color: var(--muted); }
+.dt-table .dt-chip-accent { background: var(--accent-soft); color: var(--accent); }
+.dt-table .dt-chip-success { background: var(--success-soft); color: var(--success); }
+.dt-table .dt-chip-warning { background: var(--warning-soft); color: var(--warning); }
+.dt-table .dt-chip-danger { background: var(--danger-soft); color: var(--danger); }
+
+/* قائمةٌ داخل خليّة: العرض يتبع محتواها لا عرض العمود، وإلّا انطوت */
+.dt-table .dt-cell-select {
+  width: auto;
+  min-width: 8.5rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.5rem;
+  min-height: 1.9rem;
+  outline: none;
+}
+
+.dt-table .dt-cell-select:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.dt-table .dt-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dt-table .dt-ltr { direction: ltr; unicode-bidi: isolate; text-align: start; }
+
+/*
+ * لا display:flex على الخليّة: ذلك يخرجها من تخطيط الجدول فينزاح
+ * العمود عن ترويسته. العرض الضئيل مع nowrap يُبقي العمود بقدر الأزرار.
+ */
+.dt-table th.dt-actions,
+.dt-table td.dt-actions {
+  width: 1%;
+  white-space: nowrap;
+  text-align: end;
+  vertical-align: middle;
+}
+
+.dt-table td.dt-actions .dt-btn + .dt-btn { margin-inline-start: 0.25rem; }
+
+.dt-table .dt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+  min-height: 1.9rem;
+  padding: 0 0.55rem;
+}
+
+.dt-table .dt-btn:hover { border-color: var(--accent); color: var(--accent); }
+.dt-table .dt-btn-danger:hover { border-color: var(--danger); color: var(--danger); }
+
+.dt-table .dt-link { color: var(--accent); text-decoration: none; }
+.dt-table .dt-link:hover { text-decoration: underline; }
+
+/* شريط السعر في عمود تصفية المنتجات: المساران فوق بعض، والإبهام وحده يُمسك */
+.price-range { position: relative; height: 1.75rem; }
+.price-range input[type='range'] {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  width: 100%;
+  height: 1.75rem;
+  margin: 0;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+}
+.price-range input[type='range']::-webkit-slider-runnable-track { height: 4px; background: transparent; }
+.price-range input[type='range']::-moz-range-track { height: 4px; background: transparent; }
+.price-range input[type='range']::-webkit-slider-thumb {
+  pointer-events: auto;
+  appearance: none;
+  height: 1rem;
+  width: 1rem;
+  margin-top: -6px;
+  border-radius: 999px;
+  border: 2px solid var(--surface-raised);
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+.price-range input[type='range']::-moz-range-thumb {
+  pointer-events: auto;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 999px;
+  border: 2px solid var(--surface-raised);
+  background: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+  cursor: pointer;
+}
+
+.mail-editor {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+.mail-editor .tiptap {
+  min-height: 14rem;
+  padding: 0.9rem 1rem;
+  outline: none;
+}
+.mail-editor .tiptap > *:first-child { margin-top: 0; }
+.mail-editor .tiptap p { margin: 0.45rem 0; }
+.mail-editor .tiptap h2 { margin: 0.8rem 0 0.35rem; font-size: 1.15rem; font-weight: 700; }
+.mail-editor .tiptap h3 { margin: 0.7rem 0 0.3rem; font-size: 1.02rem; font-weight: 700; }
+.mail-editor .tiptap ul,
+.mail-editor .tiptap ol { margin: 0.4rem 0; padding-inline-start: 1.25rem; }
+.mail-editor .tiptap a { color: var(--accent); text-decoration: underline; }
+.mail-editor .tiptap blockquote {
+  margin: 0.6rem 0;
+  padding-inline-start: 0.8rem;
+  border-inline-start: 3px solid var(--accent);
+  color: var(--muted);
+}
+.mail-editor .tiptap p.is-editor-empty:first-child::before {
+  float: inline-start;
+  height: 0;
+  color: var(--muted);
+  content: attr(data-placeholder);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .dt-card { padding: 0.75rem 0.75rem 0.4rem; }
+  .dt-card .dt-search input { min-width: 0; }
+  .dt-card .dt-layout-row { gap: 0.5rem; }
+  .dt-table thead tr.dt-filters { display: none; }
+}

@@ -1,0 +1,979 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>دليل المستورد</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  /* تخطيط: عمود فهرسٍ لاصق على يمين الشاشة، والمتن إلى يساره — كصفحات المنصة نفسها */
+  :root {
+    --navy: #142d4e;
+    --teal: #16a6a1;
+    --bg: #f5f7fa;
+    --surface: #ffffff;
+    --raised: #ffffff;
+    --line: #e2e8f0;
+    --ink: #0f1f35;
+    --muted: #5b6b82;
+    --accent: #0b7f7b;
+    --accent-soft: #e6f6f5;
+    --warn: #b45309;
+    --warn-soft: #fffbeb;
+    --danger: #b91c1c;
+    --font: "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy: #0b1a2e;
+      --bg: #0b1a2e;
+      --surface: #0d2038;
+      --raised: #12273f;
+      --line: #1f3b5e;
+      --ink: #e8eef5;
+      --muted: #94a6bd;
+      --accent: #2fb5b1;
+      --accent-soft: #10303a;
+      --warn: #f0b429;
+      --warn-soft: #2a2410;
+      --danger: #f87171;
+      color-scheme: dark;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --navy: #0b1a2e;
+    --bg: #0b1a2e;
+    --surface: #0d2038;
+    --raised: #12273f;
+    --line: #1f3b5e;
+    --ink: #e8eef5;
+    --muted: #94a6bd;
+    --accent: #2fb5b1;
+    --accent-soft: #10303a;
+    --warn: #f0b429;
+    --warn-soft: #2a2410;
+    --danger: #f87171;
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .page { direction: rtl; text-align: right; }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    background: var(--navy);
+  }
+
+  /* ——— الترويسة ——— */
+  .masthead { background: var(--navy); color: #fff; }
+
+  .masthead-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 2.6rem 2.9rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .mark span.dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 999px;
+    background: var(--teal);
+  }
+
+  .masthead h1 {
+    margin: 1rem 0 0;
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
+    font-weight: 700;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+
+  .masthead p {
+    margin: 0.7rem 0 0;
+    max-width: 60ch;
+    color: #c8d6e8;
+    font-size: 1.02rem;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.2rem;
+    margin-top: 1.6rem;
+    padding-top: 1.3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .fact { display: flex; flex-direction: column; }
+  .fact b { font-size: 1.35rem; font-variant-numeric: tabular-nums; }
+  .fact span { color: #9fb3cc; font-size: 0.8rem; }
+
+  /* ——— الهيكل ——— */
+  .shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 2rem 4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 2.2rem;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 950px) {
+    .shell { grid-template-columns: 232px minmax(0, 1fr); align-items: start; }
+  }
+
+  nav.toc {
+    position: static;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 0.9rem 1rem;
+    min-width: 0;
+  }
+
+  @media (min-width: 950px) {
+    nav.toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1rem); max-height: 86vh; overflow-y: auto; }
+  }
+
+  nav.toc h2 {
+    margin: 0 0 0.6rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  nav.toc ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 0.15rem; counter-reset: toc; }
+
+  nav.toc a {
+    display: flex;
+    gap: 0.55rem;
+    align-items: baseline;
+    padding: 0.4rem 0.5rem;
+    border-radius: 9px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.88rem;
+  }
+
+  nav.toc a::before {
+    counter-increment: toc;
+    content: counter(toc);
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  nav.toc a:hover { background: var(--accent-soft); color: var(--accent); }
+  nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  main { min-width: 0; display: grid; gap: 2.6rem; }
+
+  section { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 1rem); }
+
+  section > h2 {
+    margin: 0 0 0.3rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .lede { margin: 0 0 1.2rem; color: var(--muted); max-width: 70ch; }
+
+  h3 { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 600; }
+  p { margin: 0 0 0.8rem; max-width: 72ch; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ——— بطاقات ——— */
+  .card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 1.1rem 1.2rem;
+    min-width: 0;
+  }
+
+  .grid { display: grid; gap: 0.9rem; }
+  @media (min-width: 640px) { .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 860px) { .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+  /* ——— بطاقة صفحة ——— */
+  .screen {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface);
+    padding: 1.1rem 1.2rem;
+    min-width: 0;
+  }
+
+  .screen + .screen { margin-top: 0.9rem; }
+
+  .screen-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .path {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    direction: ltr;
+    unicode-bidi: isolate;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 0.1rem 0.45rem;
+  }
+
+  .who {
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: 999px;
+    padding: 0.12rem 0.55rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .who.all { background: #eef2f7; color: var(--muted); }
+  .who.plat { background: var(--warn-soft); color: var(--warn); }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .who.all { background: #16293f; color: var(--muted); }
+  }
+  :root[data-theme="dark"] .who.all { background: #16293f; color: var(--muted); }
+
+  /* ——— جداول ——— */
+  .tablewrap { overflow-x: auto; margin-top: 0.7rem; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 0.88rem; }
+
+  th, td {
+    text-align: right;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+
+  th { color: var(--muted); font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.k { white-space: nowrap; font-weight: 600; }
+  td.mono, .mono { font-family: var(--mono); direction: ltr; unicode-bidi: isolate; text-align: right; font-size: 0.82rem; }
+
+  ul.plain { margin: 0.4rem 0 0; padding-inline-start: 1.1rem; display: grid; gap: 0.25rem; }
+  ul.plain li { max-width: 70ch; }
+
+  /* ——— ملاحظة ——— */
+  .note {
+    border-inline-start: 3px solid var(--teal);
+    background: var(--accent-soft);
+    border-radius: 0 10px 10px 0;
+    padding: 0.75rem 0.95rem;
+    margin-top: 0.9rem;
+  }
+
+  .note.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .note p { margin: 0; max-width: 68ch; font-size: 0.92rem; }
+
+  /* ——— خطّ زمنيّ ——— */
+  .flow { display: grid; gap: 0; margin-top: 0.5rem; }
+
+  .step {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.85rem;
+    padding-bottom: 1.1rem;
+    position: relative;
+  }
+
+  .step::before {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    bottom: 0;
+    inset-inline-start: 0.95rem;
+    width: 2px;
+    background: var(--line);
+  }
+
+  .step:last-child { padding-bottom: 0; }
+  .step:last-child::before { display: none; }
+
+  .step .num {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step .body b { display: block; margin-bottom: 0.15rem; }
+  .step .body span { color: var(--muted); font-size: 0.92rem; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  footer .inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 1.6rem 2.4rem;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    nav.toc a { transition: background-color 0.15s ease, color 0.15s ease; }
+  }
+</style>
+
+<div class="page">
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="mark"><span class="dot"></span> المستورد · ALMUSTAWRED</div>
+      <h1>دليل المنصة الكامل</h1>
+      <p>
+        كلّ بوابة، وكلّ صفحة، وكلّ زرّ، وكلّ حساب — ماذا يرى كلّ دور، وماذا يفعل كلّ إجراء،
+        وإلى أين يقود. مكتوبٌ من الشيفرة نفسها لا من التصوّر.
+      </p>
+
+      <div class="facts">
+        <div class="fact"><b>3</b><span>أدوار</span></div>
+        <div class="fact"><b>62</b><span>صفحة</span></div>
+        <div class="fact"><b>174</b><span>نقطة واجهة برمجية</span></div>
+        <div class="fact"><b>196</b><span>اختباراً آلياً</span></div>
+        <div class="fact"><b>2</b><span>لغة ووضعان</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <nav class="toc" aria-label="فهرس الدليل">
+      <h2>الفهرس</h2>
+      <ol>
+        <li><a href="#what">ما هي المنصة</a></li>
+        <li><a href="#roles">الأدوار الثلاثة</a></li>
+        <li><a href="#accounts">الحسابات والدخول</a></li>
+        <li><a href="#shared">ما يتكرّر في كل صفحة</a></li>
+        <li><a href="#public">البوابة العامّة</a></li>
+        <li><a href="#buyer">بوابة تاجر الجملة</a></li>
+        <li><a href="#supplier">بوابة المستورد</a></li>
+        <li><a href="#ops">العمليات: شحن ومرتجعات</a></li>
+        <li><a href="#money">المال: مدفوعات ومحاسبة</a></li>
+        <li><a href="#admin">بوابة إدارة المنصة</a></li>
+        <li><a href="#account">الحساب المشترك</a></li>
+        <li><a href="#lifecycle">دورة حياة صفقة</a></li>
+        <li><a href="#concepts">مفاهيم تحكم المنصة</a></li>
+        <li><a href="#states">الحالات ومعانيها</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <!-- ١ -->
+      <section id="what">
+        <h2>ما هي المنصة</h2>
+        <p class="lede">سوقٌ بين التجّار (B2B) يصل <b>تاجر الجملة</b> الباحث عن بضاعة بـ<b>المستورد</b> الذي يملكها، ويحمل الصفقة من أوّل سؤال إلى آخر قيدٍ في الدفتر.</p>
+
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>المشكلة</h3>
+            <p>تاجر الجملة يسأل معارفه عن مستوردٍ يثق به، والمستورد يملك بضاعةً لا يعرف من يطلبها. والأسعار تُتبادل على الورق وفي المحادثات، فتضيع العروض ولا يبقى أثرٌ يُرجع إليه.</p>
+          </div>
+          <div class="card">
+            <h3>الجواب</h3>
+            <p>دليل مستوردين موثَّقين، وطلب سعرٍ واحد يصل كلّ المختصّين في الصنف، وجدول مقارنة بالأرقام، ثمّ أمر شراءٍ يجرّ وراءه فاتورةً ومخزوناً وعمولة بلا إدخالٍ ثانٍ.</p>
+          </div>
+          <div class="card">
+            <h3>ما يميّزها</h3>
+            <p>ليست واجهة عرض: تحتها محاسبة بالقيد المزدوج، ومخزون بالمتوسط المرجّح وFIFO، وشحن ومرتجعات ونزاعات — كلّها في دفتر كلّ مستوردٍ على حدة.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٢ -->
+      <section id="roles">
+        <h2>الأدوار الثلاثة</h2>
+        <p class="lede">كلّ حسابٍ ينتمي إلى <b>مستأجر</b> (شركة) واحد، ونوع المستأجر يحدّد ما يراه أصحابه. والقائمة الجانبية تُبنى من الدور: ما لا يخصّك لا يظهر لك أصلاً.</p>
+
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr><th>الدور</th><th>في الشيفرة</th><th>من هو</th><th>أبوابه</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="k">المستورد</td>
+                <td class="mono">supplier</td>
+                <td>البائع: يستورد البضاعة ويبيعها بالجملة.</td>
+                <td>الطلبات الواردة، عروضي، منتجاتي، الطلبات، الشحن، المرتجعات، المخزون، المدفوعات، المشتريات، المحاسبة، المحادثات</td>
+              </tr>
+              <tr>
+                <td class="k">تاجر الجملة</td>
+                <td class="mono">buyer</td>
+                <td>المشتري: يشتري من المستورد ليبيع في محلّه.</td>
+                <td>طلبات الأسعار، الطلبات، الشحن، المرتجعات، المحادثات</td>
+              </tr>
+              <tr>
+                <td class="k">إدارة المنصة</td>
+                <td class="mono">platform</td>
+                <td>الوسيط: يعتمد، ويحكم بين الطرفين، ويحصّل عمولته.</td>
+                <td>اثنا عشر باباً تحت «إدارة المنصة»، ومعها المحاسبة ودفتر المنصة نفسه</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note">
+          <p><b>المستورد ليس المشتري.</b> اسم المنصة «المستورد» هو اسم أحد دوريها، والشيفرة تسمّي الدور <span class="mono">supplier</span> بينما الواجهة تسمّيه «مستورد» — طبقتا تسمية لشيء واحد. و<span class="mono">tenant.type</span> قيمة واحدة لا قائمة: الشركة التي تستورد وتشتري من غيرها تحتاج اليوم حسابين.</p>
+        </div>
+      </section>
+
+      <!-- ٣ -->
+      <section id="accounts">
+        <h2>الحسابات والدخول</h2>
+        <p class="lede">كلّ الحسابات التجريبية بكلمة المرور <span class="mono">password</span>.</p>
+
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>الحساب</th><th>البريد</th><th>ماذا يفتح لك</th></tr></thead>
+            <tbody>
+              <tr><td class="k">مدير المنصة</td><td class="mono">admin@b2b.local</td><td>كلّ أبواب الإدارة، ودفتر المنصة، وصندوق رسائل التواصل</td></tr>
+              <tr><td class="k">مستورد — قطع سيارات</td><td class="mono">supplier0@b2b.local</td><td>كتالوج فيه منتجات بصورها، ومخزون وحركات ومحاسبة فعلية</td></tr>
+              <tr><td class="k">مستورد آخر</td><td class="mono">supplier1@b2b.local</td><td>للمقارنة: عرضان متنافسان على الطلب نفسه</td></tr>
+              <tr><td class="k">تاجر جملة</td><td class="mono">buyer@b2b.local</td><td>طلب أسعار منشور، وعروض تُقارَن، وأمر شراء مسلَّم</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid cols-2" style="margin-top: 0.9rem">
+          <div class="screen">
+            <div class="screen-head"><h3>تسجيل الدخول</h3><span class="path">/login</span><span class="who all">للجميع</span></div>
+            <p>بريدٌ وكلمة مرور. وإن انتهت جلستك أثناء العمل نُقلت إلى هنا مع سطرٍ يقول لماذا خرجت، بدل صفحةٍ تفشل طلباتها بلا تفسير.</p>
+          </div>
+          <div class="screen">
+            <div class="screen-head"><h3>إنشاء حساب</h3><span class="path">/register</span><span class="who all">للجميع</span></div>
+            <p>زرّان في الأعلى يحدّدان نوع الحساب: <b>مستورد</b> أو <b>تاجر جملة</b>. المستورد يُضيف اسم شركته بالإنجليزية ويختار أصنافه — وزرّ الإرسال يبقى معطّلاً حتى يختار صنفاً واحداً على الأقلّ، ويُقال له ذلك بدل أن يخمّن.</p>
+            <p>حساب المستورد يُنشأ <b>بانتظار المراجعة</b>: لا يظهر في الدليل ولا تصله طلبات الأسعار قبل أن تعتمده الإدارة.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٤ -->
+      <section id="shared">
+        <h2>ما يتكرّر في كل صفحة</h2>
+        <p class="lede">قبل الدخول في الصفحات: هذه العناصر تعمل في كلّ مكان، فلا تتكرّر في شرح كل صفحة.</p>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>الشريط العلويّ</h3>
+            <ul class="plain">
+              <li><b>☰</b> يطوي العمود الجانبي إلى أيقوناته (موضعه ثابت لا يتحرّك مع الطيّ).</li>
+              <li><b>بحث</b> عن المنتجات من أيّ صفحة.</li>
+              <li><b>السمة</b>: نهاريّ / ليليّ / حسب النظام.</li>
+              <li><b>اللغة</b>: عربية ⇄ إنجليزية، ويقلب الاتجاه معها.</li>
+              <li><b>الجرس</b>: الإشعارات غير المقروءة.</li>
+              <li><b>حسابك</b>: اسم الشركة، ومنه «الحساب» و«المحادثات» و«تسجيل الخروج».</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>العمود الجانبيّ</h3>
+            <p>يُبنى من دورك، ومقسّم إلى: التجارة، العمليات، المالية. يُطوى إلى أيقونات (تبقى الأسماء في التلميح)، والاختيار محفوظ بين الجلسات. ولمدير المنصة فرعٌ منسدل يضمّ أبوابه الاثني عشر.</p>
+          </div>
+
+          <div class="card">
+            <h3>الحالات الأربع</h3>
+            <ul class="plain">
+              <li><b>تحميل</b>: هيكلٌ رماديّ يحجز المساحة فلا يقفز التخطيط.</li>
+              <li><b>خطأ</b>: سببٌ بلغتك (لا صلاحية / غير موجود / لا يصل الاتصال) وزرّ إعادة — ولا زرّ لما لا تُجدي فيه الإعادة.</li>
+              <li><b>فراغ</b>: رسالة ومعها مخرج («امسح البحث»، «منتج جديد»).</li>
+              <li><b>نجاح</b>: إشعارٌ لحظيّ أسفل الشاشة بنصّ الخادم نفسه.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>القوائم والجداول</h3>
+            <ul class="plain">
+              <li>كلّ قائمة طويلة لها <b>تنقّل بين الصفحات</b> أسفلها مع عدّادها.</li>
+              <li>على الهاتف يصير كلّ صفٍّ <b>بطاقة</b>: اسم العمود يميناً وقيمته يساراً.</li>
+              <li>البحث يعمل <b>أثناء الكتابة</b> ومعه زرّ ظاهر.</li>
+              <li>الحذف يطلب <b>تأكيداً</b> في موضعه، ويعود إلى حاله بعد أربع ثوانٍ.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٥ -->
+      <section id="public">
+        <h2>البوابة العامّة</h2>
+        <p class="lede">ما يراه الزائر قبل أن يسجّل — وهي نفسها متاحة بعد الدخول.</p>
+
+        <div class="screen">
+          <div class="screen-head"><h3>الصفحة الرئيسية</h3><span class="path">/</span><span class="who all">للجميع</span></div>
+          <p>لوحة ترحيب بصورة ميناء وشعار «بضاعتك تبدأ من هون»، وزرّان: <b>تصفّح المنتجات</b> و<b>اطلب عرض سعر</b>. تحتها الأصناف الرئيسية الثمانية ببطاقاتها (تنقلك إلى مستوردي الصنف)، ثمّ «كيف تعمل المنصة» في ثلاث خطوات.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المنتجات</h3><span class="path">/products</span><span class="who all">للجميع</span></div>
+          <p>كتالوج المنصة كلّه. بحثٌ بالاسم أو الرمز أو الماركة، ومرشّح أصنافٍ بالبحث. كلّ بطاقة: صورة المنتج، اسمه، مستورده، سعره، وأقلّ كمية للطلب.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الزرّ</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">صورة المنتج أو اسمه</td><td>يفتح صفحة المنتج</td></tr>
+                <tr><td class="k">اسم المستورد</td><td>يفتح صفحة المستورد</td></tr>
+                <tr><td class="k">امسح البحث</td><td>يظهر حين لا نتائج، فيعيد القائمة كاملة</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>صفحة المنتج</h3><span class="path">/products/:slug</span><span class="who all">للجميع</span></div>
+          <p>عمودان: معرض الصور إلى جانب ما يُقرأ ويُقارن. والمعرض صورة كبيرة ومصغّرات، والتكبير على نقرة ويُغلق بـEscape.</p>
+          <ul class="plain">
+            <li><b>الترويسة</b>: الحالة (متوفر/نفد)، الماركة، الاسم، المستورد مع توثيقه ومدينته.</li>
+            <li><b>بطاقة السعر</b>: السعر أو «السعر عند الطلب»، والوحدة، وزرّا <b>اطلب عرض سعر</b> و<b>مراسلة</b>.</li>
+            <li><b>المعلومات</b>: أقلّ كمية، مدّة التسليم، رمز المنتج، الماركة، بلد المنشأ، الرمز الجمركي.</li>
+            <li><b>السعر حسب الكمية</b> إن وُجد سلّم أسعار، ثمّ الوصف، ثمّ <b>الخصائص</b>، ثمّ منتجات مشابهة.</li>
+          </ul>
+          <div class="note">
+            <p><b>زرّ «اطلب عرض سعر»</b> يفتح نموذج الطلب مكتوباً باسم المنتج وصنفه وأقلّ كمية له — فالنيّة معروفة ولا معنى لإعادة كتابتها.</p>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>دليل المستوردين</h3><span class="path">/suppliers</span><span class="who all">للجميع</span></div>
+          <p>بطاقات المستوردين: الشعار، الاسم، شارة التوثيق، النبذة، المدينة، التقييم، عدد الصفقات المكتملة، أصنافه، وأقلّ طلب لديه. ومرشّحان: الصنف، و«الموثّقون فقط». وزرّ <b>عرض المنتجات (ن)</b> ينقلك إلى كتالوجه.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>صفحة المستورد</h3><span class="path">/suppliers/:slug</span><span class="who all">للجميع</span></div>
+          <p>بطاقة تعريف كاملة: الشعار والاسم والتوثيق والنبذة والمدينة والهاتف والتقييم وأقلّ طلب، ثمّ أصنافه وماركاته، ثمّ كتالوجه. وزرّ <b>مراسلة</b> يفتح محادثة معه مباشرة (أو ينقلك إلى الدخول إن لم تكن مسجّلاً).</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>عن المنصة</h3><span class="path">/about</span><span class="who all">للجميع</span></div>
+          <p>شرحٌ للطريق: المشكلة، الجواب، الطريقان إلى الصفقة، لمن هي، وما يحمي الطرفين. وفي ذيلها <b>نموذج تواصل</b> يصل إدارة المنصة ويعمل للزائر قبل أن يسجّل، وبطاقة تدلّ المسجَّل على المحادثة داخل المنصة.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>تتبّع شحنة</h3><span class="path">/track/:token</span><span class="who all">بلا حساب</span></div>
+          <p>برمز التتبّع العامّ وحده — يفتحها من لا حساب له: حالة الشحنة، شركة الشحن، خطّها الزمنيّ، وتاريخ التسليم. ومن دخل بلا رمز وجد حقل بحثٍ وزرّه.</p>
+        </div>
+      </section>
+
+      <!-- ٦ -->
+      <section id="buyer">
+        <h2>بوابة تاجر الجملة</h2>
+        <p class="lede">طريق المشتري: من الطلب إلى الاستلام.</p>
+
+        <div class="screen">
+          <div class="screen-head"><h3>طلب عرض سعر جديد</h3><span class="path">/rfq/new</span><span class="who">تاجر جملة</span></div>
+          <p>النموذج: عنوان الطلب، الصنف (قائمة بالبحث)، تفاصيل إضافية، مدينة التسليم، مدّة صلاحية الطلب بالساعات، وخيار <b>إخفاء هويتي حتى قبول العرض</b>. ثمّ <b>الأصناف المطلوبة</b>: وصف وكمية ووحدة لكل سطر، وزرّ <b>إضافة صنف</b>.</p>
+          <p>وزرّ <b>نشر الطلب</b> يرسله آلياً إلى كلّ مستوردٍ مسجّل في الصنف، ويعرض عليك بعده عدد من وصلهم.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>طلباتي</h3><span class="path">/my/rfqs</span><span class="who">تاجر جملة</span></div>
+          <p>بطاقات طلباتك: العنوان، الحالة، الصنف، مدينة التسليم، وقت الانتهاء، وثلاثة عدّادات (وصل إلى / فتحه / قدّم عرضاً). وزرّ <b>مقارنة العروض</b> على كلّ طلبٍ وصلته عروض.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>مقارنة العروض</h3><span class="path">/rfqs/:id/quotations</span><span class="who">تاجر جملة</span></div>
+          <p>بطاقة لكلّ عرض: المستورد وتقييمه، رقم العرض، شارتا <b>الأفضل سعراً</b> و<b>الأسرع تسليماً</b> تُحسبان تلقائياً، الإجمالي، مدّة التسليم، مهلة السداد، والمجموع قبل الإضافات.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الزرّ</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">عرض</td><td>يفتح وثيقة عرض السعر كاملة</td></tr>
+                <tr><td class="k">قبول</td><td>يقبل العرض فوراً فيتحوّل إلى أمر شراء</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>وثيقة عرض السعر</h3><span class="path">/quotations/:id</span><span class="who">طرفا العرض + المنصة</span></div>
+          <p>الوثيقة كما يقرأها طرفاها: شعار المستورد وتوثيقه، رقم العرض، الإجمالي، حالته، ثمّ شروطه (مدّة التسليم، مهلة السداد، صلاحيته، شرط التسليم)، ثمّ البنود، ثمّ المجاميع، ثمّ الملاحظات، ثمّ <b>التواقيع</b>.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>من</th><th>ما يراه</th></tr></thead>
+              <tbody>
+                <tr><td class="k">المستورد</td><td>لوحة توقيع و<b>توقيع العرض</b> — مرّة واحدة لا تتكرّر</td></tr>
+                <tr><td class="k">تاجر الجملة</td><td>لوحة توقيع و<b>الموافقة والتوقيع</b>: توقيعه قبولٌ يُنشئ أمر الشراء</td></tr>
+                <tr><td class="k">إدارة المنصة</td><td>الوثيقة والتواقيع للقراءة فقط — ليست طرفاً فيها</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note">
+            <p>يُحفظ مع كلّ توقيع <b>اسم موقّعه ووقته</b>: الصورة خطّ يد، والاسم والوقت هما ما يُحتجّ به عند الخلاف.</p>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>أوامر الشراء</h3><span class="path">/orders</span><span class="who all">الطرفان</span></div>
+          <p>جدول الطلبات: الرقم، الطرف الآخر، الإجمالي، عمولة المنصة، الحالة، وإجراءات تختلف بالدور.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الزرّ</th><th>لمن</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">شحنة جديدة</td><td>المستورد</td><td>يفتح نموذج شحن ما لم يُشحن من الطلب</td></tr>
+                <tr><td class="k">تأكيد التسليم</td><td>المستورد</td><td>ينقل الطلب إلى «تم التسليم» — ويُرفض إن كان الرصيد غير كافٍ</td></tr>
+                <tr><td class="k">طلب مرتجع</td><td>تاجر الجملة</td><td>يظهر على المسلَّم والمغلق وحده</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٧ -->
+      <section id="supplier">
+        <h2>بوابة المستورد</h2>
+        <p class="lede">طريق البائع: من الكتالوج إلى الدفتر.</p>
+
+        <div class="screen">
+          <div class="screen-head"><h3>منتجاتي</h3><span class="path">/my/products</span><span class="who">مستورد</span></div>
+          <p>جدول كتالوجك: الصور، رمز المنتج، الاسم، سعر الوحدة، أقلّ كمية، الحالة.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الزرّ</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">منتج جديد</td><td>يفتح النموذج فارغاً</td></tr>
+                <tr><td class="k">قلم التعديل</td><td>يفتح النموذج نفسه معبّأً بالمنتج</td></tr>
+                <tr><td class="k">+ صورة</td><td>يرفع صورةً أو أكثر (أولاها هي الغلاف)</td></tr>
+                <tr><td class="k">× على الصورة</td><td>يحذف تلك الصورة وحدها</td></tr>
+                <tr><td class="k">سلّة الحذف</td><td>يطلب تأكيداً ثمّ يحذف المنتج</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:0.7rem"><b>حقول النموذج:</b> الاسم بالعربية والإنجليزية، الصنف (بالبحث)، رمز المنتج، الماركة، الوحدة، أقلّ كمية، مدّة التسليم، سعر الوحدة، الحالة، الوصف، ثمّ <b>الخصائص</b> سطراً سطراً (تسمية وقيمة) بزرّ <b>إضافة خاصية</b>.</p>
+          <div class="note">
+            <p>ما تكتبه بالعربية لا يمحو الإنجليزية: الواجهة تحتفظ بالنصّ بلغتيه وتعيده معه، وتُسقط الإنجليزية وحدها حين يتبدّل العربيّ.</p>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>الطلبات الواردة</h3><span class="path">/rfq-inbox</span><span class="who">مستورد</span></div>
+          <p>طلبات الأسعار التي وصلتك في أصنافك: العنوان، المشتري (أو «مخفي» إن أخفى هويته)، الصنف، مدينة التسليم، الأصناف المطلوبة، ووقت الانتهاء. ومنها تفتح <b>إرسال عرض سعر</b>.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>إرسال عرض سعر</h3><span class="path">/rfqs/:id/quote</span><span class="who">مستورد</span></div>
+          <p>بنود الطلب تأتي جاهزة؛ تضع سعر الوحدة لكلّ بند، ثمّ: العملة، الحسم، الشحن، شرط التسليم، مدّة التسليم، مهلة السداد، صلاحية العرض، وملاحظات. والمجموع يُحسب أمامك سطراً سطراً.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>عروضي</h3><span class="path">/my/quotations</span><span class="who">مستورد</span></div>
+          <p>كلّ ما أرسلته: رقم العرض، الإجمالي، مدّة التسليم، صلاحيته، حالته، وزرّ <b>عرض</b> يفتح الوثيقة.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المخزون</h3><span class="path">/inventory</span><span class="who">مستورد</span></div>
+          <p>خمسة تبويبات:</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>التبويب</th><th>ما فيه</th><th>أزراره</th></tr></thead>
+              <tbody>
+                <tr><td class="k">الأصناف</td><td>رصيد كل منتج في كل مستودع، متوسط التكلفة، القيمة، حدّ إعادة الطلب</td><td><b>إدخال بضاعة</b>: منتج، مستودع، كمية، تكلفة الوحدة</td></tr>
+                <tr><td class="k">الحركات</td><td>كلّ حركة دخولٍ وخروج بنوعها ومصدرها</td><td>مرشّح بالنوع</td></tr>
+                <tr><td class="k">تقييم المخزون</td><td>قيمة المخزون مقابل رصيد حسابه في الدفتر، والفرق بينهما</td><td>—</td></tr>
+                <tr><td class="k">الجرد</td><td>جلسات الجرد</td><td><b>جرد جديد</b>، <b>حفظ الكميات</b>، <b>اعتماد الجرد</b> (يُولّد التسويات)</td></tr>
+                <tr><td class="k">المستودعات</td><td>مستودعاتك ورموزها</td><td><b>مستودع جديد</b></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="margin-top:0.7rem">وصفحة الصنف الواحد (<span class="path">/inventory/items/:id</span>) فيها: الرصيد وطبقات التكلفة والحركات، وأزرار <b>تسوية</b> و<b>نقل</b> إلى مستودع آخر، وحفظ حدّ إعادة الطلب.</p>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المشتريات</h3><span class="path">/purchasing</span><span class="who">مستورد</span></div>
+          <p>شراء المستورد من مورّديه (لا من المنصة). ثلاثة تبويبات: <b>أوامر الشراء</b>، <b>المورّدون</b>، <b>صرف المورّدين</b>.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الزرّ</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">أمر شراء جديد</td><td>مورّد، مستودع، تاريخان، شرط تسليم، شحن، وبنود (منتج أو وصف حرّ)</td></tr>
+                <tr><td class="k">إرسال للمورّد</td><td>ينقل الأمر من مسودّة إلى مُرسَل</td></tr>
+                <tr><td class="k">تسجيل الاستلام</td><td>استلام كلّيّ أو جزئيّ — ويدخل المخزون بتكلفته</td></tr>
+                <tr><td class="k">إصدار الفاتورة</td><td>يفوتر ما استُلم وحده، ويقسّم الضريبة على الجزئيّ</td></tr>
+                <tr><td class="k">مورّد جديد / تعديل / تعطيل</td><td>إدارة دفتر المورّدين</td></tr>
+                <tr><td class="k">توزيع تلقائي (الأقدم أولاً)</td><td>في صرف المورّدين: يوزّع الدفعة على أقدم الفواتير</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٨ -->
+      <section id="ops">
+        <h2>العمليات: شحن ومرتجعات</h2>
+
+        <div class="screen">
+          <div class="screen-head"><h3>الشحن</h3><span class="path">/shipping</span><span class="who all">الطرفان</span></div>
+          <p>تبويبان: <b>الشحنات</b> و<b>شركات الشحن</b>. والشحنة تُنشأ من أمر الشراء، فتُشتقّ حالة الطلب منها — لا تُكتب يدوياً في موضعين.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الشاشة</th><th>الأزرار</th></tr></thead>
+              <tbody>
+                <tr><td class="k">شحنة جديدة<br><span class="path">/orders/:id/ship</span></td><td>اختيار شركة الشحن، رقم التتبّع، التاريخ المتوقَّع، والكميات المشحونة لكلّ بند. وإن شُحن كلّ شيء قالت الصفحة ذلك ومعها طريق عودة.</td></tr>
+                <tr><td class="k">تفاصيل الشحنة<br><span class="path">/shipping/:id</span></td><td><b>نقل الحالة</b> إلى ما تسمح به المرحلة، <b>إضافة حدث</b> إلى الخطّ الزمنيّ، <b>رفع مستند</b>، ونسخ <b>رابط التتبّع العامّ</b>.</td></tr>
+                <tr><td class="k">شركات الشحن<br><span class="path">/shipping/carriers</span></td><td><b>شركة شحن خاصة</b> لإضافة شركتك، و<b>تسعيرة</b> لإضافة أسعار خطوطها.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المرتجعات</h3><span class="path">/returns</span><span class="who all">الطرفان</span></div>
+          <p>تبويبان: <b>المرتجعات</b> و<b>النزاعات</b>.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>الإجراء</th><th>من يملكه</th><th>أثره</th></tr></thead>
+              <tbody>
+                <tr><td class="k">طلب مرتجع</td><td>تاجر الجملة</td><td>يختار البنود والكميات القابلة للإرجاع ويكتب السبب ويرفق صوراً</td></tr>
+                <tr><td class="k">اعتماد / رفض</td><td>المستورد</td><td>الاعتماد كلّيّ أو جزئيّ، والرفض يحتاج تأكيداً</td></tr>
+                <tr><td class="k">أرسلت البضاعة</td><td>تاجر الجملة</td><td>ينقل المرتجع إلى «في الطريق»</td></tr>
+                <tr><td class="k">تسجيل الاستلام</td><td>المستورد</td><td>يُرجع البضاعة إلى المخزون إن كانت صالحة</td></tr>
+                <tr><td class="k">إقفال وإصدار إشعار دائن</td><td>المستورد</td><td>يُصدر الإشعار ويعكس القيود والعمولة بالتناسب</td></tr>
+                <tr><td class="k">فتح نزاع</td><td>الطرفان</td><td>ينقل الخلاف إلى وساطة المنصة</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>النزاع</h3><span class="path">/returns/disputes/:id</span><span class="who all">الطرفان + المنصة</span></div>
+          <p>سجلّ النزاع: الطرفان، الطلب، السبب، المبلغ المتنازع عليه، مهلة الردّ، وكلّ حدثٍ فيه. والطرفان يتراسلان فيه، <b>وملاحظات الوسيط الداخلية لا يراها غيره</b>.</p>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>زرّ الوسيط (المنصة)</th><th>ماذا يفعل</th></tr></thead>
+              <tbody>
+                <tr><td class="k">أتولّى الوساطة</td><td>يُسند النزاع إلى مدير المنصة الحالي</td></tr>
+                <tr><td class="k">طلب إيضاح</td><td>يطلب ردّ أحد الطرفين ويضبط مهلته</td></tr>
+                <tr><td class="k">إصدار القرار</td><td>النتيجة (لصالح المشتري / المستورد / جزئيّ / سُحب) ومبلغها — وتُترجَم إلى قيودها</td></tr>
+                <tr><td class="k">إقفال</td><td>يُنهي النزاع</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ٩ -->
+      <section id="money">
+        <h2>المال: مدفوعات ومحاسبة</h2>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المدفوعات</h3><span class="path">/payments</span><span class="who">مستورد</span></div>
+          <p>ثلاثة تبويبات:</p>
+          <ul class="plain">
+            <li><b>التحصيل</b>: فواتير العملاء المستحقّة، وتسجيل دفعة (العميل، المبلغ، الطريقة، التاريخ، رسوم التحصيل) مع <b>توزيع تلقائي (الأقدم أولاً)</b> أو توزيع يدويّ، وزرّ <b>كشف حساب</b> لكل عميل.</li>
+            <li><b>سجلّ الدفعات</b>: كلّ دفعة بمبلغها وما وُزّع منها وما بقي مقدَّماً، وزرّ <b>التوزيع</b> لتوزيع الفائض لاحقاً.</li>
+            <li><b>إشعارات الائتمان</b>: الإشعارات الصادرة عن المرتجعات، وزرّ <b>تطبيق على فاتورة</b>.</li>
+          </ul>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المحاسبة</h3><span class="path">/accounting</span><span class="who">مستورد + المنصة</span></div>
+          <p>دفتر مستقلّ لكلّ مستأجر، بالقيد المزدوج. خمسة تبويبات: <b>ميزان المراجعة</b>، <b>قائمة الدخل</b>، <b>قائمة المركز المالي</b>، <b>دفتر اليومية</b> (كلّ قيد بسطوره ومصدره)، و<b>دليل الحسابات</b>.</p>
+          <div class="note">
+            <p>الدفتر يمتلئ من العمليات لا من الإدخال اليدويّ: الفاتورة والتسليم والدفعة والمرتجع والعمولة كلّها تُرحَّل تلقائياً، ورقم تقييم المخزون يجب أن يطابق رصيد حسابه.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ١٠ -->
+      <section id="admin">
+        <h2>بوابة إدارة المنصة</h2>
+        <p class="lede">اثنا عشر باباً تحت فرع «إدارة المنصة» في العمود الجانبي. وكلّ فعلٍ فيها يُسجَّل في سجلّ التدقيق باسم فاعله ووقته وعنوانه.</p>
+
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>الباب</th><th>المسار</th><th>ماذا فيه</th></tr></thead>
+            <tbody>
+              <tr><td class="k">اللوحة</td><td class="mono">/admin</td><td>قيمة البضاعة المتداولة، إيراد العمولة، المستحقّ، الإيراد الشهريّ المتكرّر، اتجاه اثني عشر شهراً، قمع طلبات الأسعار، التوزّع بالعملة، وأعلى المستوردين</td></tr>
+              <tr><td class="k">الملخّص</td><td class="mono">/admin/summary</td><td>خمسة أرقام كبيرة ثمّ ثمانية أقسام تعدّ كلّ شيء، ورسما القمع وتكوين الحسابات</td></tr>
+              <tr><td class="k">اعتماد المستوردين</td><td class="mono">/admin/suppliers</td><td>بطاقة كلّ مستورد وأوراقه، وأزرار <b>اعتماد</b> و<b>رفض</b> (بسبب) و<b>تعليق/تفعيل</b></td></tr>
+              <tr><td class="k">المنتجات</td><td class="mono">/admin/products</td><td>كتالوج الجميع: بحثٌ وتصفية، تغيير حالة أيّ منتج، وحذفه (حذفٌ ناعم) — وحقل سببٍ يُسجَّل مع الفعل</td></tr>
+              <tr><td class="k">المستخدمون</td><td class="mono">/admin/users</td><td>كلّ المستخدمين؛ قلمٌ يفتح محرّراً: الاسم والهاتف والحالة، وتعيين كلمة مرور جديدة. والإيقاف وتبديل كلمة المرور يُنهيان جلسات صاحبهما فوراً</td></tr>
+              <tr><td class="k">الصفقات</td><td class="mono">/admin/trade</td><td>كلّ العروض وأوامر الشراء، وعمودٌ بقلمين يقول من وقّع، وتصحيح حالة أمر الشراء عبر خدمة التنفيذ نفسها</td></tr>
+              <tr><td class="k">النزاعات</td><td class="mono">/returns/disputes</td><td>كلّ النزاعات — المنصة وسيطها</td></tr>
+              <tr><td class="k">صور الأصناف</td><td class="mono">/admin/categories</td><td>شجرة الأصناف: إضافة وتعديل وتعطيل وحذف وصور. والحذف مشروطٌ بخلوّ الصنف</td></tr>
+              <tr><td class="k">المركز المالي</td><td class="mono">/admin/finance</td><td>أعمار العمولات المستحقّة، وجدولها، و<b>تسجيل التحصيل</b> لعمولةٍ أو <b>تحصيل الكل</b> لمستورد</td></tr>
+              <tr><td class="k">العمولات</td><td class="mono">/admin/commissions</td><td>قواعد العمولة: عامّة أو لصنف أو لمستورد، نسبة أو مبلغ، مع حدّين أدنى وأعلى</td></tr>
+              <tr><td class="k">الخطط والاشتراكات</td><td class="mono">/admin/plans</td><td>خطط الاشتراك وأسعارها، والاشتراكات الجارية</td></tr>
+              <tr><td class="k">رسائل التواصل</td><td class="mono">/admin/inbox</td><td>ما يصل من صفحة «عن المنصة»: تُعلَّم مقروءة أو تُؤرشَف، والردّ على بريد المرسِل</td></tr>
+              <tr><td class="k">سجل التدقيق</td><td class="mono">/admin/audit</td><td>كلّ إجراء إداريّ: الفعل، فاعله، هدفه، عنوانه، وقيمه قبل وبعد</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note warn">
+          <p><b>حدّان على المدير نفسه:</b> لا يوقف حسابه ولا يبدّل كلمة مروره من باب المستخدمين — بابهما صفحة حسابه. من أوقف نفسه أغلق الباب وأبقى المفتاح في الداخل.</p>
+        </div>
+      </section>
+
+      <!-- ١١ -->
+      <section id="account">
+        <h2>الحساب المشترك</h2>
+        <div class="screen">
+          <div class="screen-head"><h3>الحساب</h3><span class="path">/account</span><span class="who all">كلّ مستخدم</span></div>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>القسم</th><th>ما فيه</th></tr></thead>
+              <tbody>
+                <tr><td class="k">معلوماتي</td><td>الاسم، البريد، الهاتف (بحقلٍ دوليّ)، اللغة، وصورة المستخدم (رفع وحذف)</td></tr>
+                <tr><td class="k">كلمة المرور</td><td>الحالية + الجديدة وتأكيدها. وتغييرها يُنهي جلساتك الأخرى ويُبقي الحالية</td></tr>
+                <tr><td class="k">بيانات الشركة</td><td>الاسم بلغتيه، المدينة، الهاتف، واتساب، نبذة، وشعار الشركة — ويظهر في الدليل وفي كلّ عرض سعر</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="screen">
+          <div class="screen-head"><h3>المحادثات</h3><span class="path">/messages</span><span class="who all">كلّ مستخدم</span></div>
+          <p>قائمة المحادثات إلى جانب لوح الرسائل: الرسائل لحظية، والعدّاد في العمود يقول كم محادثةً لم تُقرأ. والمحادثة تُفتح من صفحة المستورد أو من صفحة المنتج.</p>
+        </div>
+      </section>
+
+      <!-- ١٢ -->
+      <section id="lifecycle">
+        <h2>دورة حياة صفقة</h2>
+        <p class="lede">من أوّل بحثٍ إلى آخر قيد — ومن يفعل ماذا في كلّ خطوة.</p>
+
+        <div class="flow">
+          <div class="step"><div class="num">١</div><div class="body"><b>تاجر الجملة ينشر طلب سعر</b><span>يصل آلياً إلى كلّ مستوردٍ مسجّل في الصنف، ويُحسب عدد من وصلهم.</span></div></div>
+          <div class="step"><div class="num">٢</div><div class="body"><b>المستوردون يردّون بعروضهم</b><span>كلّ مستورد يرقّم عرضه من دفتره هو — فالرقم نفسه قد يتكرّر عند غيره.</span></div></div>
+          <div class="step"><div class="num">٣</div><div class="body"><b>المستورد يوقّع عرضه</b><span>مرّة واحدة، ويُحفظ اسمه ووقته مع التوقيع.</span></div></div>
+          <div class="step"><div class="num">٤</div><div class="body"><b>تاجر الجملة يقارن ويوقّع موافقته</b><span>فيتحوّل العرض إلى أمر شراء في اللحظة نفسها.</span></div></div>
+          <div class="step"><div class="num">٥</div><div class="body"><b>المستورد يشحن</b><span>شحنة من أمر الشراء، برقم تتبّع ورابطٍ عامّ يتابعه المشتري بلا حساب.</span></div></div>
+          <div class="step"><div class="num">٦</div><div class="body"><b>التسليم</b><span>يخرج المخزون بتكلفته، وتُولَّد الفاتورة وقيودها في دفتر المستورد، ويُرحَّل قيد العمولة في دفتري المستورد والمنصة.</span></div></div>
+          <div class="step"><div class="num">٧</div><div class="body"><b>التحصيل</b><span>دفعة تُسجَّل وتُوزَّع على الفواتير، وما فاض يبقى مقدَّماً يُوزَّع لاحقاً.</span></div></div>
+          <div class="step"><div class="num">٨</div><div class="body"><b>إن وقع خلل: مرتجع</b><span>اعتماد، فاستلام، فإشعار ائتمان — وتُعكس القيود والعمولة بالتناسب.</span></div></div>
+          <div class="step"><div class="num">٩</div><div class="body"><b>وإن بقي الخلاف: نزاع</b><span>وسيطٌ من المنصة يُسند ويطلب الردّ ويحسم، والقرار يُترجَم إلى قيوده.</span></div></div>
+        </div>
+      </section>
+
+      <!-- ١٣ -->
+      <section id="concepts">
+        <h2>مفاهيم تحكم المنصة</h2>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>التوثيق</h3>
+            <p>المستورد لا يظهر في الدليل ولا تصله الطلبات قبل أن تُراجَع أوراقه. والاعتماد والرفض والتعليق كلّها تُسجَّل في التدقيق، ويُبلَّغ صاحب الحساب.</p>
+          </div>
+          <div class="card">
+            <h3>العمولة</h3>
+            <p>قواعد مرتّبة بالأخصّ: قاعدة لمستوردٍ بعينه تسبق قاعدة الصنف، وهي تسبق القاعدة العامّة. تُحسب عند التسليم، وتُرحَّل في الدفترين، وتُعكس بالتناسب مع كلّ مرتجع.</p>
+          </div>
+          <div class="card">
+            <h3>القيد المزدوج</h3>
+            <p>لكلّ مستأجر دفتره ودليل حساباته. القيد لا يُرحَّل إلّا متوازناً، والمُرحَّل لا يُعدَّل — يُعكس بقيدٍ مقابل. فما تقوله الشاشة يطابق ما في الدفتر دائماً.</p>
+          </div>
+          <div class="card">
+            <h3>المخزون</h3>
+            <p>متوسط مرجّح للتكلفة وطبقات FIFO معاً. الإخراج فوق المتاح مرفوض، والحركة لا تُعدَّل بعد تسجيلها، وقيمة المخزون تطابق رصيد حسابه في الأستاذ.</p>
+          </div>
+          <div class="card">
+            <h3>التوقيع الإلكتروني</h3>
+            <p>لوحة تُرسم بالإصبع أو بالفأرة. يُحفظ مع التوقيع اسم موقّعه ووقته، ويُفحص الملفّ فحص الملفات المرفوعة: بايتات الصورة الأولى ثمّ حجمها.</p>
+          </div>
+          <div class="card">
+            <h3>العزل بين المستأجرين</h3>
+            <p>بيانات السوق مشتركة (المنتجات، الطلبات)، والبيانات الخاصّة معزولة إلزامياً (المحاسبة، الفواتير، المخزون، الشحن). والمنصة تتجاوز العزل صراحةً حين تَعدّ أو تحكم.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ١٤ -->
+      <section id="states">
+        <h2>الحالات ومعانيها</h2>
+
+        <div class="grid cols-2">
+          <div class="card">
+            <h3>أمر الشراء</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">draft · awaiting_approval · confirmed · in_production · shipped · delivered · closed · cancelled</p>
+            <p>مسوّدة، بانتظار الاعتماد، مؤكَّد، قيد التجهيز، تم الشحن، تم التسليم، مغلق، ملغى. و«المكتمل» في العدّادات هو المسلَّم والمغلق.</p>
+          </div>
+          <div class="card">
+            <h3>عرض السعر</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">draft · sent · countered · accepted · rejected · expired</p>
+            <p>مسوّدة، مُرسَل، عرض مقابل، مقبول، مرفوض، منتهٍ. والمقبول وحده يتحوّل إلى أمر شراء.</p>
+          </div>
+          <div class="card">
+            <h3>الشحنة</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">draft · ready · picked_up · in_transit · out_for_delivery · delivered · failed · returned · cancelled</p>
+            <p>تسلسلها محروس: لا تقفز الشحنة من حالةٍ إلى غير التي تليها.</p>
+          </div>
+          <div class="card">
+            <h3>المرتجع</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">requested · approved · rejected · in_transit · received · completed · cancelled</p>
+            <p>والنزاع: مفتوح، قيد المراجعة، بانتظار ردّ طرف، محسوم، مُقفَل.</p>
+          </div>
+          <div class="card">
+            <h3>المنتج</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">draft · active · out_of_stock · archived</p>
+            <p>معروض وحده يظهر في السوق. والمؤرشف يبقى في الطلبات القديمة ولا يُعرض.</p>
+          </div>
+          <div class="card">
+            <h3>المستخدم والمستورد</h3>
+            <p class="mono" style="color:var(--muted); font-size:0.78rem">active · inactive · suspended | pending · verified · rejected</p>
+            <p>المستخدم فعّال أو موقوف، والمستورد بانتظار المراجعة أو موثَّق أو مرفوض.</p>
+          </div>
+        </div>
+
+        <div class="note" style="margin-top:1rem">
+          <p><b>العملات واللغات:</b> المبالغ تُخزَّن بالوحدة الصغرى (أعداد صحيحة) وتُنسَّق في الواجهة وحدها، والحقول المترجمة تُحفظ <span class="mono">{"ar": "…", "en": "…"}</span> — فإضافة لغةٍ ثالثة لا تتطلّب تعديل أيّ جدول.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="inner">
+      دليل المستورد · مكتوبٌ من شيفرة المنصة في 1 تشرين الثاني 2026 — ويبقى صحيحاً ما لم تتبدّل الشاشات تحته.
+    </div>
+  </footer>
+</div>
+
+</body></html>

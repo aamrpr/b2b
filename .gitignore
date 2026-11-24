@@ -1,0 +1,15 @@
+/laravel/vendor
+/laravel/node_modules
+/laravel/.env
+/laravel/storage/*.key
+/laravel/public/storage
+/react/node_modules
+/react/dist
+/react/.env
+/react/.env.production
+.DS_Store
+*.key
+*.pem
+*.sql
+/.cursor
+/.claude

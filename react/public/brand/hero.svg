@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 640" preserveAspectRatio="xMidYMid slice" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#081628" />
+      <stop offset="0.62" stop-color="#11294a" />
+      <stop offset="1" stop-color="#17365c" />
+    </linearGradient>
+
+    <radialGradient id="dawn" cx="0.78" cy="0.16" r="0.55">
+      <stop offset="0" stop-color="#16a6a1" stop-opacity="0.38" />
+      <stop offset="1" stop-color="#16a6a1" stop-opacity="0" />
+    </radialGradient>
+
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d2443" />
+      <stop offset="1" stop-color="#071424" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="640" fill="url(#sky)" />
+  <rect width="1600" height="640" fill="url(#dawn)" />
+
+  <!-- خطّ الأفق البعيد: رافعات الميناء على الضفّة المقابلة -->
+  <g fill="#1b3a62" opacity="0.55">
+    <path d="M120 300h10v160h-10zM96 300h58v10H96zM120 282l64 18h-64z" />
+    <path d="M250 288h10v172h-10zM226 288h58v10h-58zM250 268l70 20h-70z" />
+    <path d="M1420 296h10v164h-10zM1396 296h58v10h-58zM1370 278l60 18h-60z" />
+  </g>
+
+  <!-- سفينة الحاويات -->
+  <g>
+    <path d="M940 452h520l-44 58H984z" fill="#122c4c" />
+    <rect x="1340" y="376" width="96" height="76" fill="#17365c" />
+    <rect x="1356" y="392" width="64" height="10" fill="#0a1a30" opacity="0.8" />
+    <rect x="1356" y="412" width="64" height="10" fill="#0a1a30" opacity="0.8" />
+    <g opacity="0.92">
+      <rect x="984" y="412" width="84" height="20" fill="#16a6a1" />
+      <rect x="1076" y="412" width="84" height="20" fill="#2c4e7c" />
+      <rect x="1168" y="412" width="84" height="20" fill="#1f4068" />
+      <rect x="1260" y="412" width="68" height="20" fill="#16a6a1" opacity="0.75" />
+      <rect x="1030" y="388" width="84" height="20" fill="#1f4068" />
+      <rect x="1122" y="388" width="84" height="20" fill="#16a6a1" opacity="0.8" />
+      <rect x="1214" y="388" width="84" height="20" fill="#2c4e7c" />
+      <rect x="1076" y="364" width="84" height="20" fill="#2c4e7c" opacity="0.8" />
+      <rect x="1168" y="364" width="84" height="20" fill="#1f4068" />
+    </g>
+  </g>
+
+  <!-- رافعة جسرية في المقدّمة -->
+  <g fill="#1d3f6b">
+    <rect x="352" y="150" width="14" height="326" />
+    <rect x="612" y="150" width="14" height="326" />
+    <rect x="300" y="138" width="430" height="16" />
+    <path d="M300 138h-96l24 16h72z" />
+    <rect x="470" y="154" width="12" height="96" />
+    <rect x="430" y="246" width="92" height="46" fill="#16a6a1" opacity="0.65" />
+    <rect x="320" y="470" width="86" height="18" />
+    <rect x="574" y="470" width="86" height="18" />
+  </g>
+
+  <!-- رصيف الحاويات -->
+  <g>
+    <rect x="0" y="476" width="1600" height="14" fill="#1a3356" />
+    <g>
+      <rect x="16" y="440" width="112" height="36" rx="2" fill="#16a6a1" opacity="1.0" />
+      <rect x="24" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="16" y="397" width="112" height="36" rx="2" fill="#24456f" opacity="0.86" />
+      <rect x="24" y="407" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="148" y="440" width="112" height="36" rx="2" fill="#24456f" opacity="1.0" />
+      <rect x="156" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="148" y="397" width="112" height="36" rx="2" fill="#1a3a62" opacity="0.86" />
+      <rect x="156" y="407" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="148" y="354" width="112" height="36" rx="2" fill="#2c4e7c" opacity="0.72" />
+      <rect x="156" y="364" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="280" y="440" width="112" height="36" rx="2" fill="#1a3a62" opacity="1.0" />
+      <rect x="288" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="412" y="440" width="112" height="36" rx="2" fill="#2c4e7c" opacity="1.0" />
+      <rect x="420" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="412" y="397" width="112" height="36" rx="2" fill="#16a6a1" opacity="0.86" />
+      <rect x="420" y="407" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="544" y="440" width="112" height="36" rx="2" fill="#16a6a1" opacity="1.0" />
+      <rect x="552" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="544" y="397" width="112" height="36" rx="2" fill="#24456f" opacity="0.86" />
+      <rect x="552" y="407" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="544" y="354" width="112" height="36" rx="2" fill="#1a3a62" opacity="0.72" />
+      <rect x="552" y="364" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="676" y="440" width="112" height="36" rx="2" fill="#24456f" opacity="1.0" />
+      <rect x="684" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="808" y="440" width="112" height="36" rx="2" fill="#1a3a62" opacity="1.0" />
+      <rect x="816" y="450" width="96" height="2" fill="#071424" opacity="0.28" />
+      <rect x="808" y="397" width="112" height="36" rx="2" fill="#2c4e7c" opacity="0.86" />
+      <rect x="816" y="407" width="96" height="2" fill="#071424" opacity="0.28" />
+    </g>
+  </g>
+
+  <!-- الماء وانعكاسه -->
+  <rect x="0" y="490" width="1600" height="150" fill="url(#sea)" />
+  <g fill="#16a6a1" opacity="0.12">
+    <rect x="120" y="524" width="220" height="4" rx="2" />
+    <rect x="420" y="552" width="300" height="4" rx="2" />
+    <rect x="260" y="590" width="180" height="4" rx="2" />
+    <rect x="880" y="534" width="420" height="4" rx="2" />
+    <rect x="1020" y="576" width="260" height="4" rx="2" />
+    <rect x="620" y="610" width="340" height="4" rx="2" />
+  </g>
+</svg>
